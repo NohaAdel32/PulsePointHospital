@@ -1,0 +1,25 @@
+.logoSize {
+    width: 40px;
+    height: 38px;
+}
+
+.headerLogoText {
+    font-size: 30px;
+    text-decoration: none;
+    color: #012A4A;
+}
+.activeText{
+    color: #01497C !important;
+}
+.blackText{
+    color: black !important;
+}
+.darkColor{
+    color: #012A4A;
+}
+.whiteColor{
+    color: #ffffff;
+}
+.backDarkBtn{
+    background-color: #012A4A;
+}
