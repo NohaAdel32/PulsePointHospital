@@ -1,6 +1,6 @@
 import React from 'react';
 import '../Doctors/styles/Doctors.css';
-export default Doctors;
+
 
 const Doctors = () => {
   const doctorsData = [
@@ -102,3 +102,4 @@ const Doctors = () => {
   );
 };
 
+export default Doctors;
