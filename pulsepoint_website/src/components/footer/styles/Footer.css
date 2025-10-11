@@ -62,10 +62,19 @@
     flex-direction: column;
     text-align: center;
   }
-
+  .footer-top h4{
+    text-align: center;
+  }
+.footer-links{
+   margin:  auto;
+  margin-top: -30px;
+ 
+}
   .footer-links ul {
-   grid-template-columns: repeat(3, 1fr);
-   font-size: 16px;
+    display:grid;
+   grid-template-columns: repeat(2, 1fr);
+     gap: 10px;
+    font-size: 16px;
   }
 
   .footer-bottom {
