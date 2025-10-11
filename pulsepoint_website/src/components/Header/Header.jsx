@@ -4,7 +4,7 @@ export default function Header() {
     return (
         <>
 
-            <nav class="navbar navbar-expand-lg fixed">
+            <nav class="navbar navbar-expand-lg ">
                 <div class="container-fluid m-3">
                     
                     <div className="d-flex align-items-center"> 

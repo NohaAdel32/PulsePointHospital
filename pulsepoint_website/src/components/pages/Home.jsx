@@ -1,9 +1,11 @@
+import Doctors from "../Doctors/Doctors";
+import HeroImage from "../heroImage/HeroImage.jsx";
 export default function Home() {
     return (
         <>
             <div>
-                <h1>Welcome to PulsePoint</h1>
-                <p>This is the hospital website homepage.</p>
+                <HeroImage/>
+                <Doctors />
             </div>
         </>
 

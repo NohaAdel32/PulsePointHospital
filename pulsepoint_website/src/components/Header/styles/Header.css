@@ -36,3 +36,7 @@
 .backDarkBtn{
     background-color: #012A4A;
 }
+.custom-navbar {
+     /* لون أزرق غامق بشفافية 0.8 */
+    transition: background-color 0.3s ease;
+}
