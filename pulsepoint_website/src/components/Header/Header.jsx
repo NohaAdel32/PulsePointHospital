@@ -1,5 +1,6 @@
 import LogoDark from "../../assets/logoDark.png"
 import './styles/Header.css'
+import {Link} from "react-router-dom";
 export default function Header() {
     return (
         <>
@@ -18,7 +19,7 @@ export default function Header() {
                     <div class="collapse navbar-collapse " id="navbarSupportedContent">
                         <ul class="navbar-nav m-auto mb-2 mb-lg-0 ">
                             <li class="nav-item">
-                                <a class="nav-link active" className="nav-link active activeText" aria-current="page" href="#">Home</a>
+                                <Link class="nav-link active" className="nav-link active activeText" aria-current="page" to="/">Home</Link>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" className=" nav-link dropdown-toggle blackText" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -37,7 +38,7 @@ export default function Header() {
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link blackText" href="#">Doctors</a>
+                                <Link class="nav-link blackText" to="/doctors">Doctors</Link>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link blackText" href="#">Appointments</a>

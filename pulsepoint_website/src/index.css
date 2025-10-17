@@ -13,6 +13,60 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.parent-header {
+    width: 100%;
+    height: 250px; /* استخدمي px مش rem هنا */
+    position: relative;
+    overflow: hidden;
+}
+
+.header-img img {
+    width: 100%;
+    height: 250px;
+    /*object-fit: cover;*/
+}
+
+.header-overlay {
+    background-color: rgba(1, 42, 74, 0.6); /* اللون + الشفافية */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+.breadcrumb-parent{
+    position: absolute;
+    z-index: 10;
+    color: #ced4da !important;
+    top: 50%;
+    left: 50%;
+}
+.breadcrumb {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    transform: translate(-50%,-50%);
+}
+
+.breadcrumb-item a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 40px;
+    font-weight: 500;
+}
+
+.breadcrumb-item.active {
+    color: #fff !important;
+    font-size: 40px;
+    font-weight: 600;
+}
+.breadcrumb-item + .breadcrumb-item::before {
+    color: #fff;
+    font-size: 40px;
+    padding: 0 8px;
+}
+
 
 
 
