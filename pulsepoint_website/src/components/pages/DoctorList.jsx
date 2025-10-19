@@ -1,6 +1,9 @@
 import '../../index.css';
 import breadcrum_image from '../../assets/doctor.jpg';
 import {Link} from "react-router-dom";
+import Search from "../search/Search.jsx";
+import React from "react";
+import {DoctorShow} from "../Doctors/DoctorShow.jsx";
 export default function DoctorList(){
     return(
         <>
@@ -10,12 +13,16 @@ export default function DoctorList(){
                </div>
                <div className="header-overlay"></div>
                <div className="breadcrumb-parent">
+                   <h2>Our Doctors</h2>
                    <ol className="breadcrumb">
+
                        <li className="breadcrumb-item"><Link to="/">Home</Link></li>
-                       <li className="breadcrumb-item active" >Library</li>
+                       <li className="breadcrumb-item active" >Our Doctors</li>
                    </ol>
                </div>
            </div>
+           <Search/>
+          <DoctorShow/>
         </>
     )
 }

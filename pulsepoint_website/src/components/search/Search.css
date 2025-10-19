@@ -1,0 +1,76 @@
+.doctor-search-section {
+    /*background-color: #f8f9fa;*/
+    padding: 50px 0;
+    margin-bottom: 50px;
+}
+
+.search-your-doctor-form {
+    background: #fff;
+    padding: 50px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
+}
+
+.search-input {
+    position: relative;
+    flex: 1;
+    min-width: 200px;
+}
+
+.search-input input,
+.search-input select {
+    width: 100%;
+    padding: 12px 40px 12px 15px;
+    font-size: 16px;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.search-input input:focus,
+.search-input select:focus {
+    border-color: #01497c;
+}
+
+.search-input i {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #01497c;
+    font-size: 18px;
+}
+
+.rts-btn.btn-primary {
+    background-color: #01497c;
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.rts-btn.btn-primary:hover {
+    background-color: #012a4a;
+}
+@media (max-width: 750px) {
+    .search-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .rts-btn.btn-primary {
+        width: 100%;
+    }
+}
