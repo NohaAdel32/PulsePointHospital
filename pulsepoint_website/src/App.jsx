@@ -4,15 +4,19 @@ import Home from "./components/pages/Home.jsx";
 import ErrorPage from "./components/pages/ErrorPage";
 import DoctorList from "./components/pages/DoctorList.jsx";
 import DoctorDetails from "./components/pages/DoctorDetails.jsx";
+import AppointmentsBookings from "./components/AppointmentsBookings/AppointmentsBookings.jsx";
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Layout />, errorElement: <ErrorPage />,
+        element: <Layout />, 
+        errorElement: <ErrorPage />,
         children: [
             { path: '/', element: <Home /> },
             {path: '/doctors', element: <DoctorList /> },
             {path: '/doctorsDetail/:id', element: <DoctorDetails /> },
+            { path: '/appointments-bookings', element: <AppointmentsBookings /> }
+            
         ]
     }
 ])

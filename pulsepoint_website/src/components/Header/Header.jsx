@@ -1,7 +1,8 @@
 import LogoDark from "../../assets/logoDark.png"
 import './styles/Header.css'
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 export default function Header() {
+    const location = useLocation();
     return (
         <>
 
@@ -10,7 +11,7 @@ export default function Header() {
                     
                     <div className="d-flex align-items-center"> 
                         <img src={LogoDark} alt="Logo" className="logoSize" />
-                        <a class="navbar-brand" href="#" className="headerLogoText ms-2">Pulse Point</a> 
+                        <Link className="navbar-brand headerLogoText ms-2" to="/">Pulse Point</Link> 
                     </div>
                     
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,8 +19,13 @@ export default function Header() {
                     </button>
                     <div class="collapse navbar-collapse " id="navbarSupportedContent">
                         <ul class="navbar-nav m-auto mb-2 mb-lg-0 ">
-                            <li class="nav-item">
-                                <Link class="nav-link active" className="nav-link active activeText" aria-current="page" to="/">Home</Link>
+                            <li className="nav-item">
+                                <Link 
+                                    className={`nav-link ${location.pathname === '/' ? 'active activeText' : 'blackText'}`}
+                                    to="/"
+                                >
+                                    Home
+                                </Link>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" className=" nav-link dropdown-toggle blackText" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -37,11 +43,21 @@ export default function Header() {
                                     {/* <li><hr class="dropdown-divider"></hr></li> */}
                                 </ul>
                             </li>
-                            <li class="nav-item">
-                                <Link class="nav-link blackText" to="/doctors">Doctors</Link>
+                            <li className="nav-item">
+                                <Link 
+                                    className={`nav-link ${location.pathname === '/doctors' ? 'active activeText' : 'blackText'}`}
+                                    to="/doctors"
+                                >
+                                    Doctors
+                                </Link>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link blackText" href="#">Appointments</a>
+                            <li className="nav-item">
+                                <Link 
+                                    className={`nav-link ${location.pathname === '/appointments-bookings' ? 'active activeText' : 'blackText'}`}
+                                    to="/appointments-bookings"
+                                >
+                                    Appointments
+                                </Link>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link blackText" href="#">Pharmacy</a>
@@ -60,3 +76,4 @@ export default function Header() {
         </>
     )
 } 
+
