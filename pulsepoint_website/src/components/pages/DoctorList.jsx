@@ -4,6 +4,9 @@ import {Link} from "react-router-dom";
 import Search from "../search/Search.jsx";
 import React from "react";
 import {DoctorShow} from "../Doctors/DoctorShow.jsx";
+import Appointments from "../Appointments/Appointments.jsx";
+import {Fade} from "react-awesome-reveal";
+import {DummyDoctors} from "../Doctors/dummy-doctors.js";
 export default function DoctorList(){
     return(
         <>
@@ -22,7 +25,10 @@ export default function DoctorList(){
                </div>
            </div>
            <Search/>
-          <DoctorShow/>
+          <DoctorShow initialCount={6} DummyDoctors={DummyDoctors} title='Meet our Doctors'/>
+            <Fade cascade damping={0.15} direction="up" triggerOnce>
+                <Appointments/>
+            </Fade>
         </>
     )
 }

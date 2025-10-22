@@ -1,10 +1,12 @@
-import {DummyDoctors} from "./dummy-doctors.js";
-import './styles/Doctors.css';
-import Appointments from "../Appointments/Appointments.jsx";
-import React, {useState} from "react";
-export function DoctorShow(){
 
-        const [visibleCount, setVisibleCount] = useState(6);
+import './styles/Doctors.css';
+import React, {useState} from "react";
+import {Fade} from "react-awesome-reveal";
+import {Link} from "react-router-dom";
+export function DoctorShow({initialCount,DummyDoctors,title}){
+
+        const [visibleCount, setVisibleCount] = useState(initialCount);
+
 
         const handleSeeMore = () => {
             setVisibleCount(prev => prev + 6);
@@ -33,11 +35,13 @@ export function DoctorShow(){
         <>
             <section className="doctors-section">
                 <div className="doctors-container">
-                    <h2 className="doctors-title">Meet our Doctors</h2>
+                    <h2 className="doctors-title">{title}</h2>
 
                     <div className="doctors-grid">
-                        {DummyDoctors.slice(0, visibleCount).map((doctor) => (
-                            <div key={doctor.id} className="doctor-card">
+                        <Fade cascade damping={0.15} direction="up" triggerOnce>
+                        {DummyDoctors.slice(0, visibleCount).map((doctor,i) => (
+
+                            <Link to={`/doctorsDetail/${doctor.id}`}> <div key={doctor.id || i} className="doctor-card">
                                 <div className="doctor-badge">
                                     {doctor.available && (
                                         <>
@@ -67,7 +71,9 @@ export function DoctorShow(){
 
                                 <button className="appointment-btn">Book an Appointment</button>
                             </div>
+                            </Link>
                         ))}
+                        </Fade>
                     </div>
 
                     {visibleCount < DummyDoctors.length && (
@@ -77,7 +83,7 @@ export function DoctorShow(){
                     )}
                 </div>
             </section>
-            <Appointments/>
+
         </>
     )
 }

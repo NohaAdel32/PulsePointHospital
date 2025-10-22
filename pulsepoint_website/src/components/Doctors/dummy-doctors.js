@@ -13,18 +13,27 @@ export const DummyDoctors=[
         reviews: 145,
         image: doctor1,
         available: true,
-        services: 'Heart Checkup, ECG & ECHO Tests, Blood Pressure Management, Cardiac Surgery Consultation'
+        services: 'Heart Checkup, ECG & ECHO Tests, Blood Pressure Management, Cardiac Surgery Consultation',
+        appointments: [
+            { day: 'Sunday', time: '9:00 AM - 12:00 PM' },
+            { day: 'Tuesday', time: '1:00 PM - 4:00 PM' },
+            { day: 'Thursday', time: '10:00 AM - 1:00 PM' },
+        ],
     },
     {
         id: 2,
         name: 'Dr. Khaled Ali',
-        specialty: 'Neurologist',
+        specialty: 'Cardiologist',
         position: 'Senior Consultant – Brain & Nerve Disorders',
         rating: 4.6,
         reviews: 97,
         image: doctor2,
         available: true,
-        services: 'Migraine Treatment, Epilepsy Diagnosis, Sleep Disorder Therapy, Stroke Rehabilitation'
+        services: 'Migraine Treatment, Epilepsy Diagnosis, Sleep Disorder Therapy, Stroke Rehabilitation',
+        appointments: [
+            { day: 'Monday', time: '10:00 AM - 2:00 PM' },
+            { day: 'Wednesday', time: '3:00 PM - 6:00 PM' },
+        ],
     },
     {
         id: 3,
@@ -35,7 +44,11 @@ export const DummyDoctors=[
         reviews: 88,
         image: doctor3,
         available: true,
-        services: 'Child Growth Checkup, Vaccinations, Nutritional Counseling, Pediatric Allergy Treatment'
+        services: 'Child Growth Checkup, Vaccinations, Nutritional Counseling, Pediatric Allergy Treatment',
+        appointments: [
+            { day: 'Sunday', time: '2:00 PM - 5:00 PM' },
+            { day: 'Tuesday', time: '9:00 AM - 12:00 PM' },
+        ],
     },
     {
         id: 4,
@@ -46,7 +59,11 @@ export const DummyDoctors=[
         reviews: 123,
         image: doctor1,
         available: true,
-        services: 'Skin Care Consultation, Laser Treatments, Acne & Scar Removal, Anti-Aging Therapy'
+        services: 'Skin Care Consultation, Laser Treatments, Acne & Scar Removal, Anti-Aging Therapy',
+        appointments: [
+            { day: 'Monday', time: '9:00 AM - 12:00 PM' },
+            { day: 'Thursday', time: '2:00 PM - 5:00 PM' },
+        ],
     },
     {
         id: 5,
@@ -57,7 +74,11 @@ export const DummyDoctors=[
         reviews: 110,
         image: doctor2,
         available: false,
-        services: 'Teeth Whitening, Braces & Aligners, Dental Implants, Regular Checkups'
+        services: 'Teeth Whitening, Braces & Aligners, Dental Implants, Regular Checkups',
+        appointments: [
+            { day: 'Sunday', time: '11:00 AM - 3:00 PM' },
+            { day: 'Wednesday', time: '9:00 AM - 12:00 PM' },
+        ],
     },
     {
         id: 6,
@@ -68,7 +89,11 @@ export const DummyDoctors=[
         reviews: 98,
         image: doctor3,
         available: true,
-        services: 'Bone Fracture Treatment, Joint Replacement, Sports Injury Care, Spine Surgery'
+        services: 'Bone Fracture Treatment, Joint Replacement, Sports Injury Care, Spine Surgery',
+        appointments: [
+            { day: 'Monday', time: '10:00 AM - 2:00 PM' },
+            { day: 'Thursday', time: '3:00 PM - 6:00 PM' },
+        ],
     },
     {
         id: 7,
@@ -79,7 +104,11 @@ export const DummyDoctors=[
         reviews: 156,
         image: doctor1,
         available: true,
-        services: 'Pregnancy Follow-up, Ultrasound Scans, Fertility Counseling, Hormonal Disorder Treatment'
+        services: 'Pregnancy Follow-up, Ultrasound Scans, Fertility Counseling, Hormonal Disorder Treatment',
+        appointments: [
+            { day: 'Sunday', time: '10:00 AM - 1:00 PM' },
+            { day: 'Wednesday', time: '2:00 PM - 5:00 PM' },
+        ],
     },
     {
         id: 8,
@@ -90,7 +119,11 @@ export const DummyDoctors=[
         reviews: 85,
         image: doctor2,
         available: false,
-        services: 'Hearing Tests, Sinus Treatment, Tonsil Surgery, Voice & Throat Care'
+        services: 'Hearing Tests, Sinus Treatment, Tonsil Surgery, Voice & Throat Care',
+        appointments: [
+            { day: 'Tuesday', time: '9:00 AM - 12:00 PM' },
+            { day: 'Thursday', time: '1:00 PM - 4:00 PM' },
+        ],
     },
     {
         id: 9,
@@ -101,7 +134,11 @@ export const DummyDoctors=[
         reviews: 85,
         image: doctor3,
         available: true,
-        services: 'Eye Examination, Laser Vision Correction, Cataract Surgery, Children’s Eye Care'
+        services: 'Eye Examination, Laser Vision Correction, Cataract Surgery, Children’s Eye Care',
+        appointments: [
+            { day: 'Sunday', time: '9:00 AM - 1:00 PM' },
+            { day: 'Tuesday', time: '2:00 PM - 5:00 PM' },
+        ],
     },
     {
         id: 10,
@@ -112,6 +149,10 @@ export const DummyDoctors=[
         reviews: 140,
         image: doctor1,
         available: true,
-        services: 'Anxiety & Depression Therapy, Family Counseling, Behavioral Therapy, Child Psychiatry'
-    }
+        services: 'Anxiety & Depression Therapy, Family Counseling, Behavioral Therapy, Child Psychiatry',
+        appointments: [
+            { day: 'Monday', time: '10:00 AM - 2:00 PM' },
+            { day: 'Thursday', time: '3:00 PM - 6:00 PM' },
+        ],
+    },
 ]
