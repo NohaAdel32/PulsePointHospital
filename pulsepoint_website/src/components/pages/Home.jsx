@@ -1,11 +1,11 @@
 
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import Doctors from "../Doctors/Doctors";
 import HeroImage from "../heroImage/HeroImage.jsx";
 import Appointments from "../Appointments/Appointments.jsx";
 import Search from "../search/Search.jsx";
 import {DoctorShow} from "../Doctors/DoctorShow.jsx";
+import {DummyDoctors} from "../Doctors/dummy-doctors.js";
 export default function Home() {
     const location = useLocation();
 
@@ -22,7 +22,7 @@ export default function Home() {
             <div>
                 <HeroImage/>
                 <Search/>
-                <DoctorShow initialCount={3}/>
+                <DoctorShow initialCount={3} DummyDoctors={DummyDoctors} title="Meet Our Doctors"/>
                 <Appointments />
             </div>
         </>

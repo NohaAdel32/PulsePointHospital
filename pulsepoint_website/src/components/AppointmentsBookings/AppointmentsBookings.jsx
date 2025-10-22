@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './style/AppointmentsBookings.css';
-
+import appointment from '../../assets/cyber-monday-sale-calendar-clock.jpg'
 export default function AppointmentsBookings() {
     const [appointments, setAppointments] = useState([]);
 
@@ -25,16 +25,17 @@ export default function AppointmentsBookings() {
     return (
         <>
             {/* Breadcrumb */}
-            <div className="parent-header parent-header-appointments">
-                <div className="header-img" style={{ backgroundColor: '#ffffff' }}>
-                    <div style={{ height: '250px' }}></div>
+            <div className="parent-header">
+                <div className="header-img">
+                    <img src={appointment} alt="Doctors" width="100%" height="250rem" />
                 </div>
-                <div className="header-overlay-appointments"></div>
-                <div className="breadcrumb-parent breadcrumb-parent-appointments ">
-                    <h2 >My Appointments</h2>
-                    <ol className="breadcrumb breadcrumb-appointments">
-                        <li className="breadcrumb-item breadcrumb-item-appointments "><Link to="/">Home</Link></li>
-                        <li className="breadcrumb-item breadcrumb-item-appointments active ">My Appointments</li>
+                <div className="header-overlay"></div>
+                <div className="breadcrumb-parent">
+                    <h2>My Appointments</h2>
+                    <ol className="breadcrumb">
+
+                        <li className="breadcrumb-item"><Link to="/">Home</Link></li>
+                        <li className="breadcrumb-item active" >My Appointments</li>
                     </ol>
                 </div>
             </div>
