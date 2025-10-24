@@ -6,6 +6,7 @@ import Appointments from "../Appointments/Appointments.jsx";
 import Search from "../search/Search.jsx";
 import {DoctorShow} from "../Doctors/DoctorShow.jsx";
 import {DummyDoctors} from "../Doctors/dummy-doctors.js";
+import Pharmacy from '../Pharmacy/Pharmacy.jsx';
 export default function Home() {
     const location = useLocation();
 
@@ -24,6 +25,7 @@ export default function Home() {
                 <Search/>
                 <DoctorShow initialCount={3} DummyDoctors={DummyDoctors} title="Meet Our Doctors"/>
                 <Appointments />
+                <Pharmacy />
             </div>
         </>
 
