@@ -4,6 +4,7 @@ import Doctors from "../Doctors/Doctors";
 import HeroImage from "../heroImage/HeroImage.jsx";
 import Appointments from "../Appointments/Appointments.jsx";
 import Search from "../search/Search.jsx";
+import ContactUs from "../contactUs/ContactUs.jsx";
 export default function Home() {
     const location = useLocation();
 
@@ -22,6 +23,7 @@ export default function Home() {
                 <Search/>
                 <Doctors />
                 <Appointments />
+                <ContactUs/>
             </div>
         </>
 
