@@ -5,20 +5,28 @@ import ErrorPage from "./components/pages/ErrorPage";
 import DoctorList from "./components/pages/DoctorList.jsx";
 import DoctorDetails from "./components/pages/DoctorDetails.jsx";
 import AppointmentsBookings from "./components/AppointmentsBookings/AppointmentsBookings.jsx";
-
+import Sign_Up from "./components/pages/Sign_Up.jsx";
+import Sign_in from "./components/pages/Sign_in.jsx";
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Layout />, 
-        errorElement: <ErrorPage />,
+        element: <Layout/>,
+        errorElement: <ErrorPage/>,
         children: [
             { path: '/', element: <Home /> },
             {path: '/doctors', element: <DoctorList /> },
             {path: '/doctorsDetail/:id', element: <DoctorDetails /> },
             { path: '/appointments-bookings', element: <AppointmentsBookings /> }
             
+            {path: '/', element: <Home/>},
+            {path: '/doctors', element: <DoctorList/>},
+            {path: '/appointments-bookings', element: <AppointmentsBookings/>}
+
         ]
-    }
+    },
+    {path:"/SignUp", element:<Sign_Up/>},
+    {path:"/SignIn", element:<Sign_in/>}
+
 ])
 
 
