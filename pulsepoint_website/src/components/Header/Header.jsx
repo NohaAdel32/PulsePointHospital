@@ -36,7 +36,7 @@ export default function Header() {
                                     <li><a class="dropdown-item" href="#">Intensive Care Unit (ICU)</a></li>
                                     <li><a class="dropdown-item" href="#">Outpatient Clinics</a></li>
                                     <li><a class="dropdown-item" href="#">Inpatient / Admissions</a></li>
-                                    <li><a class="dropdown-item" href="#">Radiology & Imaging</a></li>
+                                    <li><Link class="dropdown-item" to="/imaging">Radiology & Imaging</Link></li>
                                     <li><a class="dropdown-item" href="#">Laboratory</a></li>
                                     <li><a class="dropdown-item" href="#">Emergency / Ambulance</a></li>
                                     <li><a class="dropdown-item" href="#">Records</a></li>

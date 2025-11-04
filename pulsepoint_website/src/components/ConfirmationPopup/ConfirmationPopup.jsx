@@ -1,14 +1,19 @@
 import { useNavigate } from 'react-router-dom';
 import './style/ConfirmationPopup.css';
 
-export default function ConfirmationPopup({ appointmentData, onClose }) {
+export default function ConfirmationPopup({ appointmentData, onClose, appointmentType = 'doctor' }) {
     const navigate = useNavigate();
 
     const handleViewBookings = () => {
-    navigate('/appointments-bookings');
-    onClose();
-    window.scrollTo(0, 0);
-};
+        if (appointmentType === 'imaging') {
+            onClose();
+            document.getElementById('imaging-appointments').scrollIntoView({ behavior: 'smooth' });
+        } else {
+            navigate('/appointments-bookings');
+            onClose();
+            window.scrollTo(0, 0);
+        }
+    };
 
     return (
         <div className="popup-overlay">
