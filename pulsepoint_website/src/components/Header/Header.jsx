@@ -1,8 +1,9 @@
 import LogoDark from "../../assets/logoDark.png"
 import './styles/Header.css'
-import {Link, useLocation} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 export default function Header() {
     const location = useLocation();
+    const navigate = useNavigate();
     return (
         <>
 
@@ -67,8 +68,8 @@ export default function Header() {
                             </li>
 
                         </ul>
-                        <button type="button" class="btn darkColor">Login</button>
-                        <button type="button" class="btn backDarkBtn whiteColor">Sign Up</button>
+                        <button type="button" class="btn darkColor" onClick={() => navigate("/signIn")}>Login</button>
+                        <button type="button" class="btn backDarkBtn whiteColor" onClick={() => navigate("/signUp")}>Sign Up</button>
 
                     </div>
                 </div>
