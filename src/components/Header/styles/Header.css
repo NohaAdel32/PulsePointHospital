@@ -1,0 +1,42 @@
+.logoSize {
+    width: 40px;
+    height: 38px;
+}
+
+.headerLogoText {
+    font-size: 25px;
+    text-decoration: none;
+    color: #012A4A;
+     font-weight:600;
+}
+.navbar-nav .nav-link{
+    font-size: 18px;
+   font-weight:600;
+
+}
+.navbar-nav li a:hover{
+     color: #01497C !important;
+     scale: 1.1;
+}
+.active{
+    color: #01497C !important;
+}
+.blackText{
+    color: black !important;
+      font-weight:600;
+}
+.darkColor{
+    color: #012A4A;
+      font-weight:600;
+}
+.whiteColor{
+    color: #ffffff;
+      font-weight:600;
+}
+.backDarkBtn{
+    background-color: #012A4A;
+}
+.custom-navbar {
+     /* لون أزرق غامق بشفافية 0.8 */
+    transition: background-color 0.3s ease;
+}
