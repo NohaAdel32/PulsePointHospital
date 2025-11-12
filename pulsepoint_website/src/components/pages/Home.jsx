@@ -25,9 +25,10 @@ export default function Home() {
                 <HeroImage/>
                 <Search/>
                 <DoctorShow initialCount={3} DummyDoctors={DummyDoctors} title="Meet Our Doctors"/>
+                <Pharmacy />
                 <Appointments />
                 <ContactUs/>
-                <Pharmacy />
+
             </div>
         </>
 

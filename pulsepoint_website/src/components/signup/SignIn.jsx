@@ -3,7 +3,45 @@ import signup from '../../assets/signup.jpg'
 import logo from '../../assets/logoDark.png'
 import {useState} from "react";
 import {Link} from "react-router-dom";
+import {hasMinLength, isEmail, isEqualsToOtherValue, isNotEmpty} from '../../util/validation.js'
+import {useActionState} from "react";
+function signupAction(prevFormState, formData) {
+    //! formData.get(key) , where key is the (name) attribute used for the input
+    const email = formData.get('email');
+    const password = formData.get('password');
+    const confirmPassword = formData.get('confirm-password');
+
+    let errors = [];
+
+    if(!isEmail(email)) {
+        errors.push('Invalid email address');
+    }
+
+    if(!isNotEmpty(password) || !hasMinLength(password ,6)) {
+        errors.push('You must provide password with at least 6 characters');
+    }
+
+    if(!isEqualsToOtherValue(password, confirmPassword)) {
+        errors.push('Passwords do not match');
+    }
+
+
+
+    if(errors.length > 0) {
+        return {
+            errors,
+            formValues: {
+                email,
+                password,
+                confirmPassword,
+            }
+        }
+    }
+
+    return { errors : null }
+}
 export default function SignIn(){
+    const [formState, formAction] = useActionState(signupAction, { errors : null });
     const [showPassword, setShowPassword] = useState(false);
     return (
         <div className="container-fluid signup-page d-flex align-items-center justify-content-center">
@@ -18,26 +56,63 @@ export default function SignIn(){
                     <p className="text-muted mb-4">
                         Please login to continue to your account.
                     </p>
-
-                    <form>
+                    {formState.errors && (
+                        <ul className="error text-danger">
+                            {formState.errors.map((error, i) => (
+                                <li key={i}>{error}</li>
+                            ))}
+                        </ul>
+                    )}
+                    <form action={formAction}>
 
                         <div className="mb-3">
-                            <label className="form-label">Email</label>
+                            <label htmlFor="email" className="form-label">Email</label>
                             <input
+                                id="email"
+                                name="email"
                                 type="email"
                                 className="form-control"
                                 placeholder="Enter your email"
+                                defaultValue={formState.formValues?.email}
                             />
                         </div>
 
                         <div className="mb-4">
-                            <label className="form-label">Password</label>
+                            <label htmlFor="password" className="form-label">Password</label>
 
                             <div className="input-group">
                                 <input
+                                    id="password"
                                     type={showPassword ? "text" : "password"}
                                     className="form-control"
                                     placeholder="Enter password"
+                                    name="password"
+                                    defaultValue={formState.formValues?.password}
+                                />
+                                <span
+                                    className="input-group-text bg-white border-start-0"
+                                    style={{ cursor: "pointer" }}
+                                    onClick={() => setShowPassword(!showPassword)}
+                                >
+                <i
+                    className={`fa-solid ${
+                        showPassword ? "fa-eye-slash" : "fa-eye"
+                    }`}
+                ></i>
+              </span>
+                            </div>
+                        </div>
+                        <div className="mb-4">
+                            <label htmlFor="confirm-password" className="form-label">Confirm Password</label>
+
+                            <div className="input-group">
+                                <input
+                                    id="confirm-password"
+                                    type={showPassword ? "text" : "password"}
+                                    className="form-control"
+                                    placeholder="Enter Confirm password"
+                                    name="confirm-password"
+                                    defaultValue={formState.formValues?.confirmPassword}
                                 />
                                 <span
                                     className="input-group-text bg-white border-start-0"

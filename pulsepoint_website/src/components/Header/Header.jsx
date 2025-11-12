@@ -1,6 +1,6 @@
 import LogoDark from "../../assets/logoDark.png"
 import './styles/Header.css'
-import {Link, useLocation, useNavigate} from "react-router-dom";
+import {Link, NavLink, useLocation, useNavigate} from "react-router-dom";
 export default function Header() {
     const location = useLocation();
     const navigate = useNavigate();
@@ -36,7 +36,7 @@ export default function Header() {
                                     <li><a class="dropdown-item" href="#">Intensive Care Unit (ICU)</a></li>
                                     <li><a class="dropdown-item" href="#">Outpatient Clinics</a></li>
                                     <li><a class="dropdown-item" href="#">Inpatient / Admissions</a></li>
-                                    <li><a class="dropdown-item" href="#">Radiology & Imaging</a></li>
+                                    <li><Link class="dropdown-item" to="/imaging">Radiology & Imaging</Link></li>
                                     <li><a class="dropdown-item" href="#">Laboratory</a></li>
                                     <li><a class="dropdown-item" href="#">Emergency / Ambulance</a></li>
                                     <li><a class="dropdown-item" href="#">Records</a></li>
@@ -64,7 +64,7 @@ export default function Header() {
                                 <a class="nav-link blackText" href="#">Pharmacy</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link blackText" href="#">Contact</a>
+                                <NavLink className={`nav-link ${location.pathname === '/ContactUs' ? 'active activeText' : 'blackText'}`} to="/ContactUs">Contact</NavLink>
                             </li>
 
                         </ul>

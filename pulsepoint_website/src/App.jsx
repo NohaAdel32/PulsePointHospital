@@ -7,6 +7,8 @@ import DoctorDetails from "./components/pages/DoctorDetails.jsx";
 import AppointmentsBookings from "./components/AppointmentsBookings/AppointmentsBookings.jsx";
 import Sign_Up from "./components/pages/Sign_Up.jsx";
 import Sign_in from "./components/pages/Sign_in.jsx";
+import Contact_Us from "./components/pages/Contact_Us.jsx";
+import Imaging from "./components/pages/Imaging.jsx";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -16,7 +18,9 @@ const router = createBrowserRouter([
             { path: '/', element: <Home /> },
             {path: '/doctors', element: <DoctorList /> },
             {path: '/doctorsDetail/:id', element: <DoctorDetails /> },
-            { path: '/appointments-bookings', element: <AppointmentsBookings /> }
+            { path: '/appointments-bookings', element: <AppointmentsBookings /> },
+            { path: '/ContactUs', element: <Contact_Us /> },
+            { path: '/imaging', element: <Imaging /> }
 
         ]
     },
