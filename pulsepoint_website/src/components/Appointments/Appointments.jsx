@@ -1,9 +1,14 @@
 import { useState, useRef } from 'react';
 import './style/Appointments.css';
 import ConfirmationPopup from '../ConfirmationPopup/ConfirmationPopup.jsx';
-
+import React from "react";
+import {useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
 export default function Appointments() {
     const dateInputRef = useRef(null);
+    const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         fullName: '',
         email: '',
@@ -89,8 +94,13 @@ export default function Appointments() {
     // Handle form submission
     const handleSubmit = (e) => {
         e.preventDefault();
-        
+        if (!isAuthenticated) {
+            alert("You must be logged in to book an appointment.");
+            navigate('/signIn');
+            return; 
+        }
         // Validate all fields
+
         const newErrors = {};
         Object.keys(formData).forEach(key => {
             const error = validateField(key, formData[key]);

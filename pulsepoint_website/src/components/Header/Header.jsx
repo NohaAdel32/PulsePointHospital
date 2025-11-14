@@ -1,25 +1,31 @@
 import LogoDark from "../../assets/logoDark.png"
 import './styles/Header.css'
+import React from "react";
 import {Link, NavLink, useLocation, useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {logout} from "../../store/auth/authSlice.js";
+import {authActions} from "../../store/auth/slices.js";
 export default function Header() {
     const location = useLocation();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
     return (
         <>
 
-            <nav class="navbar navbar-expand-lg ">
-                <div class="container-fluid m-3">
+            <nav className="navbar navbar-expand-lg ">
+                <div className="container-fluid m-3">
                     
                     <div className="d-flex align-items-center"> 
                         <img src={LogoDark} alt="Logo" className="logoSize" />
                         <Link className="navbar-brand headerLogoText ms-2" to="/">Pulse Point</Link> 
                     </div>
                     
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                        <ul class="navbar-nav m-auto mb-2 mb-lg-0 ">
+                    <div className="collapse navbar-collapse " id="navbarSupportedContent">
+                        <ul className="navbar-nav m-auto mb-2 mb-lg-0 ">
                             <li className="nav-item">
                                 <Link 
                                     className={`nav-link ${location.pathname === '/' ? 'active activeText' : 'blackText'}`}
@@ -28,20 +34,20 @@ export default function Header() {
                                     Home
                                 </Link>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" className=" nav-link dropdown-toggle blackText" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <li className="nav-item dropdown">
+                                <a  className=" nav-link dropdown-toggle blackText" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Services
                                 </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Intensive Care Unit (ICU)</a></li>
-                                    <li><a class="dropdown-item" href="#">Outpatient Clinics</a></li>
-                                    <li><a class="dropdown-item" href="#">Inpatient / Admissions</a></li>
-                                    <li><Link class="dropdown-item" to="/imaging">Radiology & Imaging</Link></li>
-                                    <li><a class="dropdown-item" href="#">Laboratory</a></li>
-                                    <li><a class="dropdown-item" href="#">Emergency / Ambulance</a></li>
-                                    <li><a class="dropdown-item" href="#">Records</a></li>
-                                    <li><a class="dropdown-item" href="#">Pharmacy</a></li>
-                                    {/* <li><hr class="dropdown-divider"></hr></li> */}
+                                <ul className="dropdown-menu">
+                                    <li><a className="dropdown-item" href="#">Intensive Care Unit (ICU)</a></li>
+                                    <li><a className="dropdown-item" href="#">Outpatient Clinics</a></li>
+                                    <li><a className="dropdown-item" href="#">Inpatient / Admissions</a></li>
+                                    <li><Link className="dropdown-item" to="/imaging">Radiology & Imaging</Link></li>
+                                    <li><a className="dropdown-item" href="#">Laboratory</a></li>
+                                    <li><a className="dropdown-item" href="#">Emergency / Ambulance</a></li>
+                                    <li><a className="dropdown-item" href="#">Records</a></li>
+                                    <li><a className="dropdown-item" href="#">Pharmacy</a></li>
+                                    {/* <li><hr className="dropdown-divider"></hr></li> */}
                                 </ul>
                             </li>
                             <li className="nav-item">
@@ -60,17 +66,28 @@ export default function Header() {
                                     Appointments
                                 </Link>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link blackText" href="#">Pharmacy</a>
+                            <li className="nav-item">
+                                <a className="nav-link blackText" href="#">Pharmacy</a>
                             </li>
-                            <li class="nav-item">
+                            <li className="nav-item">
                                 <NavLink className={`nav-link ${location.pathname === '/ContactUs' ? 'active activeText' : 'blackText'}`} to="/ContactUs">Contact</NavLink>
                             </li>
-
+                            <li className="nav-item">
+                                <a className="nav-link blackText" href="#">About Us</a>
+                            </li>
                         </ul>
-                        <button type="button" class="btn darkColor" onClick={() => navigate("/signIn")}>Login</button>
-                        <button type="button" class="btn backDarkBtn whiteColor" onClick={() => navigate("/signUp")}>Sign Up</button>
+                        {!isAuthenticated &&(
+                            <>
+                                <button type="button" className="btn darkColor" onClick={() => navigate("/signIn")}>Login</button>
+                                <button type="button" className="btn backDarkBtn whiteColor" onClick={() => navigate("/signUp")}>Sign Up</button>
+                            </>
+                        )}
 
+                    {isAuthenticated &&  <button type="button" className="btn backDarkBtn whiteColor"
+                                                 onClick={() => {
+                                                     dispatch(authActions.logout());
+                                                     navigate("/");
+                                                 }}>Log Out</button>}
                     </div>
                 </div>
             </nav>

@@ -35,6 +35,19 @@ body {
 a{
     text-decoration: none;
 }
+input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+input[type="date"] {
+    position: relative;
+    padding-right: 30px;
+    direction: rtl;
+}
 /* responsive  */
 @media (max-width: 768px) {
     .signup-card {

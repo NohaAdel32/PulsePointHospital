@@ -1,11 +1,12 @@
 import './SginUp.css';
 import signup from '../../assets/signup.jpg'
 import logo from '../../assets/logoDark.png'
-import {useState} from "react";
-import {Link} from "react-router-dom";
+import {useEffect, useState} from "react";
+import {Link, useNavigate} from "react-router-dom";
 import {hasMinLength, isEmail, isEqualsToOtherValue, isNotEmpty} from '../../util/validation.js'
-import {useActionState} from "react";
-function signupAction(prevFormState, formData) {
+import {useDispatch, useSelector} from "react-redux";
+import {authActions} from "../../store/auth/slices.js";
+function signinAction(prevFormState, formData) {
     //! formData.get(key) , where key is the (name) attribute used for the input
     const email = formData.get('email');
     const password = formData.get('password');
@@ -33,16 +34,46 @@ function signupAction(prevFormState, formData) {
             formValues: {
                 email,
                 password,
-                confirmPassword,
             }
         }
     }
 
-    return { errors : null }
+    return {
+        errors: null,
+        formValues: {
+            email,
+            password,
+        },
+    };
 }
 export default function SignIn(){
-    const [formState, formAction] = useActionState(signupAction, { errors : null });
+    const [formState, setformState] =  useState({ errors: null, formValues: {} });
     const [showPassword, setShowPassword] = useState(false);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
+    const errorLogin = useSelector(state => state.auth.error)
+    useEffect(() => {
+        if (formState.errors === null && formState.formValues?.email) {
+            console.log(" Dispatching user:", formState.formValues);
+            dispatch(authActions.login(formState.formValues));
+
+        }
+    }, [formState, dispatch]);
+
+
+    const handleSubmitLogin = (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const result = signinAction(formState, formData);
+        setformState(result);
+        if (result.errors === null && isAuthenticated) {
+           navigate('/')
+        }else{
+            navigate('/signIn')
+        }
+
+    }
     return (
         <div className="container-fluid signup-page d-flex align-items-center justify-content-center">
             <div className="row signup-card shadow rounded overflow-hidden">
@@ -56,14 +87,16 @@ export default function SignIn(){
                     <p className="text-muted mb-4">
                         Please login to continue to your account.
                     </p>
+
                     {formState.errors && (
                         <ul className="error text-danger">
                             {formState.errors.map((error, i) => (
                                 <li key={i}>{error}</li>
                             ))}
                         </ul>
-                    )}
-                    <form action={formAction}>
+                    )},
+                    {errorLogin && (<p className="error text-danger">{errorLogin}</p> )}
+                    <form onSubmit={handleSubmitLogin}>
 
                         <div className="mb-3">
                             <label htmlFor="email" className="form-label">Email</label>

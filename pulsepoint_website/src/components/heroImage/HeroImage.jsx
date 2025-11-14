@@ -1,5 +1,6 @@
 import heroImage from "../../assets/home.png";
 import "./styles/HeroImage.css";
+import React from "react";
 export default function HeroImage(){
     return(
         <>

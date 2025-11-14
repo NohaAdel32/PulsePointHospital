@@ -1,0 +1,26 @@
+.services-section{
+    background-color: white;
+}
+.service-card {
+    opacity: 0;
+    transform: rotateY(90deg);
+    transition: all 0.6s ease;
+    color:#012A4A;
+}
+
+.service-card.show {
+    opacity: 1;
+    transform: rotateY(0deg);
+}
+.service-card:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-10px);
+}
+h2{
+    color:#012A4A;
+}
+.suTitle{
+    font-size: 1rem;
+    color: #012A4A;
+    font-weight: 600;
+}

@@ -41,7 +41,7 @@ export function DoctorShow({initialCount,DummyDoctors,title}){
                         <Fade cascade damping={0.15} direction="up" triggerOnce>
                         {DummyDoctors.slice(0, visibleCount).map((doctor,i) => (
 
-                            <Link to={`/doctorsDetail/${doctor.id}`}> <div key={doctor.id || i} className="doctor-card">
+                            <Link key={doctor.id || i} to={`/doctorsDetail/${doctor.id}`}> <div  className="doctor-card">
                                 <div className="doctor-badge">
                                     {doctor.available && (
                                         <>

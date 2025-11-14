@@ -1,7 +1,8 @@
 import './style/Contact.css';
 import { hasMinLength, isEmail, isNotEmpty } from '../../util/validation.js';
 import { useActionState } from "react";
-import {Form} from "react-router-dom";
+// import {Form} from "react-router-dom";
+import React from "react";
 
 function contactAction(prevFormState, formData) {
     const firstName = formData.get('firstName');
@@ -106,7 +107,7 @@ export default function ContactUs() {
 
                     {/* Right Side */}
                     <div className="col-md-8 bg-white p-4">
-                        <form action={formAction} method="post">
+                        <form action={formAction} >
                             <div className="row">
                                 <div className="col-md-6 mb-3">
                                     <label htmlFor="firstName" className="form-label">First Name</label>

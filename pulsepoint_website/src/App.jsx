@@ -9,6 +9,9 @@ import Sign_Up from "./components/pages/Sign_Up.jsx";
 import Sign_in from "./components/pages/Sign_in.jsx";
 import Contact_Us from "./components/pages/Contact_Us.jsx";
 import Imaging from "./components/pages/Imaging.jsx";
+import React from "react";
+import AdmissionPage from "./components/pages/AdmissionPage.jsx";
+
 const router = createBrowserRouter([
     {
         path: "/",
@@ -20,7 +23,8 @@ const router = createBrowserRouter([
             {path: '/doctorsDetail/:id', element: <DoctorDetails /> },
             { path: '/appointments-bookings', element: <AppointmentsBookings /> },
             { path: '/ContactUs', element: <Contact_Us /> },
-            { path: '/imaging', element: <Imaging /> }
+            { path: '/imaging', element: <Imaging /> },
+            { path: '/admission', element: <AdmissionPage /> }
 
         ]
     },
