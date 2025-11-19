@@ -1,8 +1,9 @@
 import Admission from "../addmission/Admission.jsx";
-import breadcrum_image from "../../assets/contact.jpg";
 import {Link} from "react-router-dom";
 import React from "react";
 import addm_image from"../../assets/room3.jpg"
+import {Fade} from "react-awesome-reveal";
+import AdmissionForm from "../addmission/AdmissionForm.jsx";
 export default function AdmissionPage(){
     return(
         <>
@@ -20,7 +21,10 @@ export default function AdmissionPage(){
                     </ol>
                 </div>
             </div>
-        <Admission/>
+        <Admission initialCount={6} title="Inpatient / Admission"/>
+            <Fade cascade damping={0.15} direction="up" triggerOnce>
+                <AdmissionForm />
+            </Fade>
         </>
     )
 }

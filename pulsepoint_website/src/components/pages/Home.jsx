@@ -9,6 +9,7 @@ import {DummyDoctors} from "../Doctors/dummy-doctors.js";
 import ContactUs from "../contactUs/ContactUs.jsx";
 import Pharmacy from '../Pharmacy/Pharmacy.jsx';
 import Services from "../services/Services.jsx";
+import {Fade} from "react-awesome-reveal";
 export default function Home() {
     const location = useLocation();
 
@@ -28,9 +29,12 @@ export default function Home() {
                 <Services/>
                 <DoctorShow initialCount={3} DummyDoctors={DummyDoctors} title="Meet Our Doctors"/>
                 <Pharmacy />
-                <Appointments />
+                <Fade cascade damping={0.15} direction="left" triggerOnce>
+                    <Appointments/>
+                </Fade>
+                <Fade cascade damping={0.15} direction="right" triggerOnce>
                 <ContactUs/>
-
+                </Fade>
             </div>
         </>
 

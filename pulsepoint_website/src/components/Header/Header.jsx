@@ -41,7 +41,7 @@ export default function Header() {
                                 <ul className="dropdown-menu">
                                     <li><a className="dropdown-item" href="#">Intensive Care Unit (ICU)</a></li>
                                     <li><a className="dropdown-item" href="#">Outpatient Clinics</a></li>
-                                    <li><a className="dropdown-item" href="#">Inpatient / Admissions</a></li>
+                                    <li><Link className="dropdown-item" to="/admission">Inpatient / Admissions</Link></li>
                                     <li><Link className="dropdown-item" to="/imaging">Radiology & Imaging</Link></li>
                                     <li><a className="dropdown-item" href="#">Laboratory</a></li>
                                     <li><a className="dropdown-item" href="#">Emergency / Ambulance</a></li>
