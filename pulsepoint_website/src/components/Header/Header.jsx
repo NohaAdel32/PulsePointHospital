@@ -45,7 +45,7 @@ export default function Header() {
                                     <li><Link className="dropdown-item" to="/imaging">Radiology & Imaging</Link></li>
                                     <li><a className="dropdown-item" href="#">Laboratory</a></li>
                                     <li><a className="dropdown-item" href="#">Emergency / Ambulance</a></li>
-                                    <li><a className="dropdown-item" href="#">Records</a></li>
+                                    <li><Link className="dropdown-item" to="/records">Records</Link></li>
                                     <li><a className="dropdown-item" href="#">Pharmacy</a></li>
                                     {/* <li><hr className="dropdown-divider"></hr></li> */}
                                 </ul>

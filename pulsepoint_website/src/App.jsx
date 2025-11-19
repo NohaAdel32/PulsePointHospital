@@ -9,6 +9,7 @@ import Sign_Up from "./components/pages/Sign_Up.jsx";
 import Sign_in from "./components/pages/Sign_in.jsx";
 import Contact_Us from "./components/pages/Contact_Us.jsx";
 import Imaging from "./components/pages/Imaging.jsx";
+import Records from "./components/pages/Records.jsx";
 import React from "react";
 import AdmissionPage from "./components/pages/AdmissionPage.jsx";
 
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
             { path: '/appointments-bookings', element: <AppointmentsBookings /> },
             { path: '/ContactUs', element: <Contact_Us /> },
             { path: '/imaging', element: <Imaging /> },
+            { path: '/records', element: <Records /> },
             { path: '/admission', element: <AdmissionPage /> }
         ]
     },
