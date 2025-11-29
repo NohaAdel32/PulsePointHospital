@@ -75,8 +75,7 @@ export default function SignUp() {
         useEffect(() => {
             if (formState.errors === null && formState.formValues?.username) {
                 console.log(" Dispatching user:", formState.formValues);
-                dispatch(authActions.Register(formState.formValues));
-                // navigate("/");
+
 
                 alert("Registration Done")
 
@@ -88,9 +87,11 @@ export default function SignUp() {
         const result = signupAction(formState, formData);
         setFormState(result);
         if (result.errors === null) {
-            e.target.reset();
+            dispatch(authActions.Register(result.formValues));
             setFormState({ errors: null, formValues: {} });
             alert("Registration Done")
+            e.target.reset();
+            navigate("/");
         }
 
     }

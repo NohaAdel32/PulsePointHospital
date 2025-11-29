@@ -1,12 +1,19 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { DummyAddmission } from './dummy-addmission.js';
 import ConfirmationPopup from '../ConfirmationPopup/ConfirmationPopup';
 import './styles/AdmissionForm.css';
+import {useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
+import ModalAdmission from "./ModalAdmission.jsx";
+
 
 export default function AdmissionForm() {
     const location = useLocation();
+    const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+    const navigate = useNavigate();
     const dateInputRef = useRef(null);
+    const [selectedAppointment, setSelectedAppointment] = useState(null);
     const [formData, setFormData] = useState({
         fullName: '',
         email: '',
@@ -48,6 +55,11 @@ export default function AdmissionForm() {
             case 'email':
                 if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
                     error = 'Please enter a valid email address';
+                }
+                break;
+            case 'No_Of_Night':
+                if (!/^[0-9]+$/.test(value)) {
+                    error = 'Number of nights must be a number';
                 }
                 break;
             case 'phoneNumber':
@@ -104,8 +116,12 @@ export default function AdmissionForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        // Validate all fields
+        if (!isAuthenticated) {
+            alert("You must be logged in to book an appointment.");
+            navigate('/signIn');
+            return;
+        }
+            // Validate all fields
         const newErrors = {};
         Object.keys(formData).forEach(key => {
             const error = validateField(key, formData[key]);
@@ -120,7 +136,7 @@ export default function AdmissionForm() {
         const newAppointment = {
             id: Date.now(),
             ...formData,
-            price: DummyAddmission.find(img => img.name === formData.AdmissionType)?.price || '0'
+            price: DummyAddmission.find(img => img.title === formData.AdmissionType)?.price || '0'
         };
 
         const updatedAppointments = [...bookedAppointments, newAppointment];
@@ -146,10 +162,20 @@ export default function AdmissionForm() {
         setBookedAppointments(updatedAppointments);
         localStorage.setItem('AdmissionAppointments', JSON.stringify(updatedAppointments));
     };
+    const updateAppointmentPayment = (id, paymentMethod) => {
+        const updated = bookedAppointments.map(a =>
+            a.id === id ? { ...a, paymentMethod } : a
+        );
+
+        setBookedAppointments(updated);
+        localStorage.setItem('AdmissionAppointments', JSON.stringify(updated));
+    };
 
     return (
+        <>
         <div className="Admission-form-section" id="Admission-form">
             <div className="Admission-form-container">
+
                 <h2>Book Admission Appointment</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
@@ -218,7 +244,7 @@ export default function AdmissionForm() {
                             value={formData.No_Of_Night}
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            placeholder="Referring Doctor's Name"
+                            placeholder="Number Of Night"
                             className={errors.No_Of_Night ? 'error' : ''}
                             required
                         />
@@ -235,8 +261,8 @@ export default function AdmissionForm() {
                         >
                             <option value="">Select Admission Type</option>
                             {DummyAddmission.map(img => (
-                                <option key={img.id} value={img.name}>
-                                    {img.name} - ${img.price}
+                                <option key={img.id} value={img.title}>
+                                    {img.title} - ${img.price}
                                 </option>
                             ))}
                         </select>
@@ -261,19 +287,35 @@ export default function AdmissionForm() {
                                 <h4>{appointment.AdmissionType}</h4>
                                 <p><strong>Patient:</strong> {appointment.fullName}</p>
                                 <p><strong>Date:</strong> {appointment.availableDate}</p>
-                                <p><strong>Doctor:</strong> {appointment.No_Of_Night}</p>
-                                <p><strong>Price:</strong> ${appointment.price}</p>
+                                <p><strong>Night:</strong> {appointment.No_Of_Night} / ${appointment.price}</p>
+                                <p><strong>Total Price:</strong> ${appointment.No_Of_Night * appointment.price}</p>
                                 <button
                                     onClick={() => handleDeleteAppointment(appointment.id)}
                                     className="delete-button"
                                 >
                                     Cancel Appointment
                                 </button>
+                                {appointment.paymentMethod ? (
+                                    <button className="btn btn-success mt-3" disabled>
+                                        Paid via: {appointment.paymentMethod.toUpperCase()}
+                                    </button>
+                                ) : (
+                                    <button
+                                        className="btn btn-primary mt-3"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#checkoutModal"
+                                        onClick={() => setSelectedAppointment(appointment )}
+                                    >
+                                        Checkout
+                                    </button>
+                                )}
                             </div>
                         ))}
                     </div>
                 </div>
             </div>
         </div>
-    );
+    <ModalAdmission id="checkoutModal" selected={selectedAppointment}   onFinish={updateAppointmentPayment}/>
+        </>
+            );
 }

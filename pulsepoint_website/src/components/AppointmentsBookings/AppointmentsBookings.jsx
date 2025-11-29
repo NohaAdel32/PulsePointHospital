@@ -2,14 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './style/AppointmentsBookings.css';
 import appointment from '../../assets/cyber-monday-sale-calendar-clock.jpg'
+import Modal from "../modal/Modal.jsx";
 export default function AppointmentsBookings() {
     const [appointments, setAppointments] = useState([]);
-
+    const [selectedAppointment, setSelectedAppointment] = useState(null);
     useEffect(() => {
         // Get appointments from localStorage
         const savedAppointments = JSON.parse(localStorage.getItem('appointments')) || [];
         setAppointments(savedAppointments);
     }, []);
+    const updateAppointmentPayment = (id, paymentMethod) => {
+        const updated = appointments.map(a =>
+            a.id === id ? { ...a, paymentMethod } : a
+        );
+
+        setAppointments(updated);
+        localStorage.setItem("appointments", JSON.stringify(updated));
+    };
 
     const handleDeleteAppointment = (id) => {
         // Filter out the appointment to delete
@@ -65,6 +74,7 @@ export default function AppointmentsBookings() {
                                                 <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
                                             </svg>
                                         </div>
+                                        {!appointment.paymentMethod &&
                                         <button 
                                             className="delete-btn"
                                             onClick={() => handleDeleteAppointment(appointment.id)}
@@ -75,6 +85,7 @@ export default function AppointmentsBookings() {
                                                 <path fillRule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
                                             </svg>
                                         </button>
+                                        }
                                     </div>
                                     
                                     <div className="card-body">
@@ -115,6 +126,21 @@ export default function AppointmentsBookings() {
                                         <div className="booking-date">
                                             <small>Booked on: {appointment.bookingDate}</small>
                                         </div>
+
+                                        {appointment.paymentMethod ? (
+                                            <button className="btn btn-success mt-3" disabled>
+                                                Paid via: {appointment.paymentMethod.toUpperCase()}
+                                            </button>
+                                        ) : (
+                                            <button
+                                                className="btn btn-primary mt-3"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#checkoutModal"
+                                                onClick={() => setSelectedAppointment(appointment)}
+                                            >
+                                                Checkout
+                                            </button>
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -122,6 +148,9 @@ export default function AppointmentsBookings() {
                     </div>
                 )}
             </div>
+            <Modal id="checkoutModal" selected={selectedAppointment}   onFinish={updateAppointmentPayment}/>
         </>
-    );
+
+
+);
 }

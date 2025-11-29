@@ -1,10 +1,19 @@
 import Admission from "../addmission/Admission.jsx";
-import {Link} from "react-router-dom";
-import React from "react";
+import {Link, useLocation} from "react-router-dom";
+import React, {useEffect} from "react";
 import addm_image from"../../assets/room3.jpg"
 import {Fade} from "react-awesome-reveal";
 import AdmissionForm from "../addmission/AdmissionForm.jsx";
 export default function AdmissionPage(){
+    const location = useLocation();
+    useEffect(() => {
+        if (location.hash === '#Admission-form') {
+            const element = document.getElementById('Admission-form');
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    }, [location]);
     return(
         <>
             <div className="parent-header">

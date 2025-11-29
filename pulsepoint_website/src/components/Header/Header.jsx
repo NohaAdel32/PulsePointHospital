@@ -40,7 +40,7 @@ export default function Header() {
                                 </a>
                                 <ul className="dropdown-menu">
                                     <li><a className="dropdown-item" href="#">Intensive Care Unit (ICU)</a></li>
-                                    <li><a className="dropdown-item" href="#">Outpatient Clinics</a></li>
+                                    <li><Link className="dropdown-item" to='/doctors'>Outpatient Clinics</Link></li>
                                     <li><Link className="dropdown-item" to="/admission">Inpatient / Admissions</Link></li>
                                     <li><Link className="dropdown-item" to="/imaging">Radiology & Imaging</Link></li>
                                     <li><a className="dropdown-item" href="#">Laboratory</a></li>
@@ -73,7 +73,7 @@ export default function Header() {
                                 <NavLink className={`nav-link ${location.pathname === '/ContactUs' ? 'active activeText' : 'blackText'}`} to="/ContactUs">Contact</NavLink>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link blackText" href="#">About Us</a>
+                                <Link className={`nav-link ${location.pathname === '/aboutUs' ? 'active activeText' : 'blackText'}`} to="/aboutUs">About Us</Link>
                             </li>
                         </ul>
                         {!isAuthenticated &&(

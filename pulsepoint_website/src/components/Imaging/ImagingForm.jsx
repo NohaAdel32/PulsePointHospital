@@ -1,12 +1,17 @@
-import { useState, useEffect, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
+import {useLocation, useNavigate} from 'react-router-dom';
 import { DummyImaging } from './dummy-imaging';
 import ConfirmationPopup from '../ConfirmationPopup/ConfirmationPopup';
 import './style/ImagingForm.css';
+import ModalAdmission from "../addmission/ModalAdmission.jsx";
+import ModalImaging from "./ModalImaging.jsx";
+import {useSelector} from "react-redux";
 
 export default function ImagingForm() {
     const location = useLocation();
     const dateInputRef = useRef(null);
+    const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         fullName: '',
         email: '',
@@ -27,7 +32,7 @@ export default function ImagingForm() {
     
     const [showPopup, setShowPopup] = useState(false);
     const [bookedAppointments, setBookedAppointments] = useState([]);
-
+    const [selectedAppointment, setSelectedAppointment] = useState(null);
     useEffect(() => {
         const savedAppointments = localStorage.getItem('imagingAppointments');
         if (savedAppointments) {
@@ -108,7 +113,11 @@ export default function ImagingForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
+        if (!isAuthenticated) {
+            alert("You must be logged in to book an appointment.");
+            navigate('/signIn');
+            return;
+        }
         // Validate all fields
         const newErrors = {};
         Object.keys(formData).forEach(key => {
@@ -150,8 +159,17 @@ export default function ImagingForm() {
         setBookedAppointments(updatedAppointments);
         localStorage.setItem('imagingAppointments', JSON.stringify(updatedAppointments));
     };
+    const updateAppointmentPayment = (id, paymentMethod) => {
+        const updated = bookedAppointments.map(a =>
+            a.id === id ? { ...a, paymentMethod } : a
+        );
+
+        setBookedAppointments(updated);
+        localStorage.setItem('imagingAppointments', JSON.stringify(updated));
+    };
 
     return (
+        <>
         <div className="imaging-form-section" id="imaging-form">
             <div className="imaging-form-container">
                 <h2>Book Imaging Appointment</h2>
@@ -273,11 +291,27 @@ export default function ImagingForm() {
                                 >
                                     Cancel Appointment
                                 </button>
+                                {appointment.paymentMethod ? (
+                                    <button className="btn btn-success mt-3" disabled>
+                                        Paid via: {appointment.paymentMethod.toUpperCase()}
+                                    </button>
+                                ) : (
+                                    <button
+                                        className="btn btn-primary mt-3"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#checkoutModal"
+                                        onClick={() => setSelectedAppointment(appointment )}
+                                    >
+                                        Checkout
+                                    </button>
+                                )}
                             </div>
                         ))}
                     </div>
                 </div>
             </div>
         </div>
+            <ModalImaging id="checkoutModal" selected={selectedAppointment}   onFinish={updateAppointmentPayment}/>
+            </>
     );
 }

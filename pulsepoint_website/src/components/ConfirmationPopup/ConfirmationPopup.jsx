@@ -7,8 +7,12 @@ export default function ConfirmationPopup({ appointmentData, onClose, appointmen
     const handleViewBookings = () => {
         if (appointmentType === 'imaging') {
             onClose();
-            document.getElementById('imaging-appointments').scrollIntoView({ behavior: 'smooth' });
-        } else {
+            document.getElementById('imaging-appointments').scrollIntoView({behavior: 'smooth'});
+        } else if (appointmentType === 'admission'){
+                onClose();
+                document.getElementById('Admission-appointments').scrollIntoView({ behavior: 'smooth' })
+            }
+         else {
             navigate('/appointments-bookings');
             onClose();
             window.scrollTo(0, 0);
