@@ -1,51 +1,52 @@
 import LogoًWhite from "../../assets/logoWhite.png";
 import "./styles/Footer.css";
 import React from "react";
+import {Link} from "react-router-dom";
 export default function Footer() {
   return (
     <>
       <footer className="footer">
-        <div class="footer-top">
-          <div class="footer-logo">
+        <div className="footer-top">
+          <div className="footer-logo">
             <img src={LogoًWhite} alt="Logo" className="logoSize1" />
             <p className="num_h">
-              <i class="fa-solid fa-phone-volume"></i> 12345
+              <i className="fa-solid fa-phone-volume"></i> 12345
             </p>
             <p className="email_h">pulsepoint_hospital@xyz.com</p>
           </div>
 
-          <div class="footer-links">
+          <div className="footer-links">
             <h4>Quick Links</h4>
             <ul>
               <li>
-                <a href="#">Home</a>
+                <Link to="/">Home</Link>
               </li>
               <li>
-                <a href="#">Services</a>
+                <Link to="/#serviceSection">Services</Link>
               </li>
               <li>
-                <a href="#">Doctors</a>
+                <Link to="/doctors">Doctors</Link>
               </li>
               <li>
-                <a href="#">Appointments</a>
+                <Link to="/appointments-bookings">Appointments</Link>
               </li>
               <li>
-                <a href="#">Pharmacy</a>
+                <Link to="/pharmacy">Pharmacy</Link>
               </li>
               <li>
-                <a href="#">Emergency</a>
+                <Link to="#">Emergency</Link>
               </li>
               <li>
-                <a href="#">ICU</a>
+                <Link to="/ICU">ICU</Link>
               </li>
               <li>
-                <a href="#">Contact</a>
+                <Link to="/ContactUs">Contact</Link>
               </li>
             </ul>
           </div>
         </div>
-        <div class="footer-bottom">
-          <div class="social">
+        <div className="footer-bottom">
+          <div className="social">
             <a href="#">
               <i class="fa-brands fa-square-facebook"></i>
             </a>

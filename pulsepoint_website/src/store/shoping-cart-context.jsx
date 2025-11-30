@@ -1,7 +1,14 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { DummyNewProducts } from '../components/Pharmacy/dummy-new-products';
 import { DummyPopularProducts } from '../components/Pharmacy/dummy-popular-products';
-
+import foly from "../assets/Foley Catheter.png"
+import thermometer from "../assets/Thermometer.png"
+import mask from "../assets/Oxygen Mask.png"
+import wound from "../assets/Wound Dressing.png"
+import oxgen from "../assets/Oxygen Mask.png"
+import gloves from "../assets/Surgical Gloves.png"
+import medical from "../assets/Medical Mask.png"
+import sanitizer2 from "../assets/Hand Sanitizer.png"
 // Create Context
 const PharmacyContext = createContext();
 
@@ -19,15 +26,15 @@ export const PharmacyProvider = ({ children }) => {
 
 const [products] = useState([
     // New Products
-    { id: 1, name: 'Foley Catheter', price: 5.35, category: 'medical', image: '/images/foley-catheter.jpg', isNew: true },
-    { id: 2, name: 'Thermometer', price: 3.50, category: 'medical', image: '/images/thermometer.jpg', isNew: true },
-    { id: 3, name: 'Non-rebreather mask', price: 2.00, category: 'medical', image: '/images/mask.jpg', isNew: true },
-    { id: 4, name: 'Wound Dressing', price: 4.20, category: 'medical', image: '/images/wound-dressing.jpg', isNew: true },
+    { id: 1, name: 'Foley Catheter', price: 5.35, category: 'medical', image: foly, isNew: true },
+    { id: 2, name: 'Thermometer', price: 3.50, category: 'medical', image: thermometer, isNew: true },
+    { id: 3, name: 'Non-rebreather mask', price: 2.00, category: 'medical', image: mask, isNew: true },
+    { id: 4, name: 'Wound Dressing', price: 4.20, category: 'medical', image: wound, isNew: true },
     // Popular Products
-    { id: 5, name: 'Oxygen Mask', price: 12.50, category: 'respiratory', image: '/images/oxygen-mask.jpg', isPopular: true },
-    { id: 6, name: 'Surgical Gloves', price: 7.30, category: 'safety', image: '/images/gloves.jpg', isPopular: true },
-    { id: 7, name: 'Medical Mask', price: 1.80, category: 'safety', image: '/images/medical-mask.jpg', isPopular: true },
-    { id: 8, name: 'Hand Sanitizer', price: 3.99, category: 'hygiene', image: '/images/sanitizer.jpg', isPopular: true }
+    { id: 5, name: 'Oxygen Mask', price: 12.50, category: 'respiratory', image: oxgen, isPopular: true },
+    { id: 6, name: 'Surgical Gloves', price: 7.30, category: 'safety', image: gloves, isPopular: true },
+    { id: 7, name: 'Medical Mask', price: 1.80, category: 'safety', image: medical, isPopular: true },
+    { id: 8, name: 'Hand Sanitizer', price: 3.99, category: 'hygiene', image: sanitizer2, isPopular: true }
   ]);
 
 

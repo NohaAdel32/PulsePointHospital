@@ -44,9 +44,8 @@ export default function Header() {
                                     <li><Link className="dropdown-item" to="/admission">Inpatient / Admissions</Link></li>
                                     <li><Link className="dropdown-item" to="/imaging">Radiology & Imaging</Link></li>
                                     <li><a className="dropdown-item" href="#">Laboratory</a></li>
-                                    <li><a className="dropdown-item" href="#">Emergency / Ambulance</a></li>
                                     <li><Link className="dropdown-item" to="/records">Records</Link></li>
-                                    <li><a className="dropdown-item" href="#">Pharmacy</a></li>
+                                    <li><Link className="dropdown-item" to="/pharmacy">Pharmacy</Link></li>
                                     {/* <li><hr className="dropdown-divider"></hr></li> */}
                                 </ul>
                             </li>
@@ -67,13 +66,13 @@ export default function Header() {
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link blackText" href="#">Pharmacy</a>
+                                <NavLink  className={`nav-link ${location.pathname === '/pharmacy' ? 'active activeText' : 'blackText'}`} to="/pharmacy">Pharmacy</NavLink>
                             </li>
                             <li className="nav-item">
                                 <NavLink className={`nav-link ${location.pathname === '/ContactUs' ? 'active activeText' : 'blackText'}`} to="/ContactUs">Contact</NavLink>
                             </li>
                             <li className="nav-item">
-                                <Link className={`nav-link ${location.pathname === '/aboutUs' ? 'active activeText' : 'blackText'}`} to="/aboutUs">About Us</Link>
+                                <NavLink className={`nav-link ${location.pathname === '/aboutUs' ? 'active activeText' : 'blackText'}`} to="/aboutUs">About Us</NavLink>
                             </li>
                         </ul>
                         {!isAuthenticated &&(
