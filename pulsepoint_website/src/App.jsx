@@ -13,7 +13,7 @@ import Records from "./components/pages/Records.jsx";
 import React from "react";
 import AdmissionPage from "./components/pages/AdmissionPage.jsx";
 import AboutUsPage from "./components/pages/AboutUsPage.jsx";
-
+import ICU from "./components/ICU/ICU.jsx"
 const router = createBrowserRouter([
     {
         path: "/",
@@ -28,7 +28,8 @@ const router = createBrowserRouter([
             { path: '/imaging', element: <Imaging /> },
             { path: '/records', element: <Records /> },
             { path: '/admission', element: <AdmissionPage /> },
-            { path: '/aboutUs', element: <AboutUsPage /> }
+            { path: '/aboutUs', element: <AboutUsPage /> },
+            { path: '/ICU', element: <ICU /> },
         ]
     },
     {path:"/SignUp", element:<Sign_Up/>},

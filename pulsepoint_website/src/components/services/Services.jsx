@@ -35,10 +35,12 @@ export default function Services(){
 
 
                         <div className="col-md-3 col-sm-6 " >
+                            <Link to="/ICU">
                             <div className="p-4 border rounded-3 shadow-sm h-100 service-card">
                                 <i className="fa-solid fa-briefcase-medical fa-2x mb-3 "></i>
                                 <h6 className="fw-bold mb-2">Intensive Care Unit (ICU)</h6>
                             </div>
+                            </Link>
                         </div>
 
 
