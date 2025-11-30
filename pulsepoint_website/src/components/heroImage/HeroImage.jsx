@@ -1,7 +1,9 @@
 import heroImage from "../../assets/home.png";
 import "./styles/HeroImage.css";
 import React from "react";
+import {useNavigate} from "react-router-dom";
 export default function HeroImage(){
+    const navigate = useNavigate();
     return(
         <>
     <div className=' container-fluid parent-heroImage '>
@@ -17,8 +19,13 @@ export default function HeroImage(){
                 <p className="num_h mt-5">
                     <i className="fa-solid fa-phone-volume"></i> 12345
                 </p>
-                <button className='btn-appotmaint'>Book an appointment</button>
-                <button className='btn-services'>View Services</button>
+                <button className='btn-appotmaint' onClick={() => navigate("#appointment-form")}>Book an appointment</button>
+                <button className='btn-services'   onClick={() => {
+                    const element = document.getElementById("serviceSection");
+                    if (element) {
+                        element.scrollIntoView({ behavior: "smooth" });
+                    }
+                }}>View Services</button>
             </div>
             <div className='col-lg-5 col-12 '>
                 <div className='HeroImage-section'>

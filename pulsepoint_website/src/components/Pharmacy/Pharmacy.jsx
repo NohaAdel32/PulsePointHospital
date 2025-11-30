@@ -64,7 +64,7 @@ const Pharmacy = () => {
   ];
 
   return (
-    <section className="pharmacy-section">
+    <section className="pharmacy-section" id="pharmacySection">
       <div className="pharmacy-container">
         {/* Header */}
         <div className="pharmacy-header">

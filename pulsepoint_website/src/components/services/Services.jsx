@@ -1,7 +1,11 @@
 import './ٍServices.css'
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
+import {useSelector} from "react-redux";
 export default function Services(){
+    const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
+    const [showEmergencyModal, setShowEmergencyModal] = useState(false);
+
     useEffect(() => {
         const cards = document.querySelectorAll(".service-card");
 
@@ -21,8 +25,8 @@ export default function Services(){
     return(
         <>
 
-            <section className="py-5 services-section">
-                <div className="container text-center">
+            <section className="py-5 services-section" id="serviceSection">
+                <div className="container text-center" >
 
                     <h2 className="mb-4 fw-bold">Our Medical Services</h2>
                     <p className=" mb-5 suTitle">We are dedicated to giving you the best medical services</p>
@@ -39,18 +43,22 @@ export default function Services(){
 
 
                         <div className="col-md-3 col-sm-6">
+                            <Link to="/doctors">
                             <div className="p-4 border rounded-3 shadow-sm h-100 service-card">
                                 <i className="fa-solid fa-stethoscope fa-2x mb-3 "></i>
                                 <h6 className="fw-bold mb-2">Outpatient Clinics</h6>
                             </div>
+                            </Link>
                         </div>
 
 
                         <div className="col-md-3 col-sm-6">
+                            <Link to="/admission">
                             <div className="p-4 border rounded-3 shadow-sm h-100 service-card">
                                 <i className="fa-solid fa-user-nurse fa-2x mb-3 "></i>
                                 <h6 className="fw-bold mb-2">Inpatient / Admissions</h6>
                             </div>
+                            </Link>
                         </div>
 
 
@@ -73,32 +81,76 @@ export default function Services(){
 
 
                         <div className="col-md-3 col-sm-6">
-                            <div className="p-4 border rounded-3 shadow-sm h-100 service-card">
-                                <i className="fa-solid fa-ambulance fa-2x mb-3 "></i>
+                            <div
+                                className="p-4 border rounded-3 shadow-sm h-100 service-card"
+                                onClick={() => setShowEmergencyModal(true)}
+                                style={{ cursor: "pointer" }}
+                            >
+                                <i className="fa-solid fa-ambulance fa-2x mb-3"></i>
                                 <h6 className="fw-bold mb-2">Emergency / Ambulance</h6>
                             </div>
                         </div>
 
-
+                        {isAuthenticated ? (
                         <div className="col-md-3 col-sm-6">
+                            <Link to="/records">
                             <div className="p-4 border rounded-3 shadow-sm h-100 service-card">
                                 <i className="fa-solid fa-file-medical fa-2x mb-3 "></i>
                                 <h6 className="fw-bold mb-2">Records</h6>
                             </div>
+                            </Link>
                         </div>
+                        ):(
+                            <div className="col-md-3 col-sm-6">
+                                <Link to="/SignIn">
+                                    <div className="p-4 border rounded-3 shadow-sm h-100 service-card">
+                                        <i className="fa-solid fa-file-medical fa-2x mb-3 "></i>
+                                        <h6 className="fw-bold mb-2">Records</h6>
+                                    </div>
+                                </Link>
+                            </div>
+                        )}
 
 
                         <div className="col-md-3 col-sm-6">
-                            <div className="p-4 border rounded-3 shadow-sm h-100 service-card">
+                            <div className="p-4 border rounded-3 shadow-sm h-100 service-card"
+                                 onClick={() => {
+                                     const element = document.getElementById("pharmacySection");
+                                     if (element) {
+                                         element.scrollIntoView({ behavior: "smooth" });
+                                     }
+                                 }}
+                                 style={{ cursor: "pointer" }}>
                                 <i className="fa-solid fa-prescription-bottle-medical fa-2x mb-3 "></i>
                                 <h6 className="fw-bold mb-2">Pharmacy</h6>
                             </div>
+
                         </div>
 
                     </div>
 
                 </div>
             </section>
+            {showEmergencyModal && (
+                <div className="modal-overlay">
+                    <div className="modal-box">
+                        <h4>Emergency Ambulance</h4>
+                        <p>If you need immediate assistance, please call:</p>
+
+                        <a className="btn btn-danger w-100 my-3" href="tel:123">
+                            Call Ambulance (123)
+                        </a>
+
+                        <button
+                            className="btn btn-secondary w-100"
+                            onClick={() => setShowEmergencyModal(false)}
+                        >
+                            Close
+                        </button>
+                    </div>
+                </div>
+            )}
+
         </>
     )
 }
