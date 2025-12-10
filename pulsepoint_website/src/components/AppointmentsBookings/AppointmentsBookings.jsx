@@ -3,9 +3,12 @@ import { Link } from 'react-router-dom';
 import './style/AppointmentsBookings.css';
 import appointment from '../../assets/cyber-monday-sale-calendar-clock.jpg'
 import Modal from "../modal/Modal.jsx";
+import {useSelector} from "react-redux";
+
 export default function AppointmentsBookings() {
     const [appointments, setAppointments] = useState([]);
     const [selectedAppointment, setSelectedAppointment] = useState(null);
+        const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
     useEffect(() => {
         // Get appointments from localStorage
         const savedAppointments = JSON.parse(localStorage.getItem('appointments')) || [];
@@ -30,7 +33,14 @@ export default function AppointmentsBookings() {
         // Update localStorage
         localStorage.setItem('appointments', JSON.stringify(updatedAppointments));
     };
-
+   if (!isAuthenticated) {
+        return (
+            <div className="container my-5 text-center">
+                <h3 className="text-muted">No Appointments Bookings found</h3>
+                <p>Please log in to view your Appointments Bookings.</p>
+            </div>
+        );
+    }
     return (
         <>
             {/* Breadcrumb */}

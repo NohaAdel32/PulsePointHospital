@@ -46,13 +46,13 @@ const ModalAdmission = ({ id, selected ,onFinish}) => {
                                     <strong>Name:</strong> {selected?.fullName}
                                 </p>
                                 <p>
-                                    <strong>Nights:</strong> {selected?.No_Of_Night}
+                                    <strong>Doctor:</strong> {selected?.doctorName}
                                 </p>
                                 <p>
                                     <strong>Date:</strong> {selected?.availableDate}
                                 </p>
                                 <p>
-                                    <strong>Total Price:</strong> ${ (selected?.No_Of_Night ?? 0) * (selected?.price ?? 0) }
+                                    <strong> Price:</strong> {selected?.price}
                                 </p>
                             </div>
                         )}

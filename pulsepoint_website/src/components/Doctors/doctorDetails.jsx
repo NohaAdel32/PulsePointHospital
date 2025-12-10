@@ -4,9 +4,12 @@ import { DummyDoctors } from "./dummy-doctors.js";
 import './styles/Doctors.css'
 import {Fade} from "react-awesome-reveal";
 import {DoctorShow} from "./DoctorShow.jsx";
+import { useDispatch } from "react-redux";
+import { setBookingData } from "../../store/bookingSlice.js";
 
 export default function DoctorDetail(){
     const { id } = useParams();
+    const dispatch = useDispatch();
     const doctor = DummyDoctors.find((d) => d.id === parseInt(id));
     const relatedDoctors = DummyDoctors.filter(
         (d) => d.specialty === doctor.specialty && d.id !== doctor.id
@@ -18,6 +21,23 @@ export default function DoctorDetail(){
             </div>
         );
     }
+        const handleBooking = (appointment) => {
+            const formattedDate = appointment.date;
+        dispatch(
+            setBookingData({
+                doctorId: doctor.id,
+                doctorName: doctor.name,
+                specialty: doctor.specialty,
+                day: formattedDate,
+                time: appointment.time,
+            })
+        );
+    const form = document.getElementById("appointment-form");
+
+    if (form) {
+        form.scrollIntoView({ behavior: "smooth" });
+    }
+    };
 
     return (
         <>
@@ -72,7 +92,8 @@ export default function DoctorDetail(){
                                     <div className="card-body">
                                         <h6 className=" fw-bold" style={{ color: '#012A4A' }}>{appointment.day}</h6>
                                         <p className="text-muted mb-2">{appointment.time}</p>
-                                        <button className="btn btn-sm book-btn" >
+                                        <button className="btn btn-sm book-btn" 
+                                        onClick={() => handleBooking(appointment)}>
                                             Book Appointment
                                         </button>
                                     </div>

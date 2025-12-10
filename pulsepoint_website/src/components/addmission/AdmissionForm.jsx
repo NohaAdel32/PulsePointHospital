@@ -278,8 +278,8 @@ export default function AdmissionForm() {
                         appointmentType="Admission"
                     />
                 )}
-
-                <div className="booked-appointments" id="Admission-appointments">
+            {isAuthenticated && 
+               <div className="booked-appointments" id="Admission-appointments">
                     <h3>Booked Admission Appointments</h3>
                     <div className="appointments-grid">
                         {bookedAppointments.map(appointment => (
@@ -313,6 +313,8 @@ export default function AdmissionForm() {
                         ))}
                     </div>
                 </div>
+            }
+             
             </div>
         </div>
     <ModalAdmission id="checkoutModal" selected={selectedAppointment}   onFinish={updateAppointmentPayment}/>

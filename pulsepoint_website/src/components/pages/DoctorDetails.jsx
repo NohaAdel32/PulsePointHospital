@@ -8,6 +8,7 @@ import Search from "../search/Search.jsx";
 import {Fade} from "react-awesome-reveal";
 import Appointments from "../Appointments/Appointments.jsx";
 export default function DoctorDetails(){
+    
     return(
         <>
             <div className="parent-header">
@@ -27,7 +28,7 @@ export default function DoctorDetails(){
             <Search/>
         <DoctorDetail/>
             <Fade cascade damping={0.15} direction="up" triggerOnce>
-                <Appointments/>
+                <Appointments />
             </Fade>
         </>
     )

@@ -7,6 +7,7 @@ import ModalAdmission from "../addmission/ModalAdmission.jsx";
 import ModalImaging from "./ModalImaging.jsx";
 import {useSelector} from "react-redux";
 
+
 export default function ImagingForm() {
     const location = useLocation();
     const dateInputRef = useRef(null);
@@ -274,8 +275,8 @@ export default function ImagingForm() {
                         appointmentType="imaging"
                     />
                 )}
-
-                <div className="booked-appointments" id="imaging-appointments">
+{isAuthenticated &&
+ <div className="booked-appointments" id="imaging-appointments">
                     <h3>Booked Imaging Appointments</h3>
                     <div className="appointments-grid">
                         {bookedAppointments.map(appointment => (
@@ -309,6 +310,8 @@ export default function ImagingForm() {
                         ))}
                     </div>
                 </div>
+}
+               
             </div>
         </div>
             <ModalImaging id="checkoutModal" selected={selectedAppointment}   onFinish={updateAppointmentPayment}/>

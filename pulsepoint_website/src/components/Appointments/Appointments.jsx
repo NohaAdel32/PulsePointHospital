@@ -1,13 +1,16 @@
-import { useState, useRef } from 'react';
+import { useState, useRef ,useEffect} from 'react';
 import './style/Appointments.css';
 import ConfirmationPopup from '../ConfirmationPopup/ConfirmationPopup.jsx';
 import React from "react";
 import {useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
+
+
 export default function Appointments() {
     const dateInputRef = useRef(null);
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
     const navigate = useNavigate();
+const bookingData = useSelector(state => state.booking.data);
 
     const [formData, setFormData] = useState({
         fullName: '',
@@ -26,6 +29,15 @@ export default function Appointments() {
     });
     
     const [showPopup, setShowPopup] = useState(false);
+      useEffect(() => {
+        if (bookingData) {
+            setFormData(prev => ({
+                ...prev,
+                doctorName: bookingData.doctorName || "",
+                availableDate: bookingData.day ? "" : prev.availableDate 
+            }));
+        }
+    }, [bookingData]);
 
     const validateField = (name, value) => {
         let error = '';

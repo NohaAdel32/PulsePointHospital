@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import breadcrum_image from '../../assets/records.jpg';
+import {useSelector} from "react-redux";
 
 const DummyLabRecords = [
     {
@@ -23,6 +24,16 @@ const DummyImagingRecords = [
 ];
 
 export default function Records() {
+
+        const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
+     if (!isAuthenticated) {
+        return (
+            <div className="container my-5 text-center">
+                <h3 className="text-muted">No records found</h3>
+                <p>Please log in to view your medical records.</p>
+            </div>
+        );
+    }
     return (
         <>
             <div className="parent-header">
